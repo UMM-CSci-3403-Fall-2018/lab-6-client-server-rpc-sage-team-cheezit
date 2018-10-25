@@ -17,7 +17,7 @@ import java.net.URL;
  */
 public class ExchangeRateReader {
     String baseURL;
-    String accessKey = "INSERT ACCESS KEY HERE";
+    String accessKey = "INSERT ACCESS CODE HERE :)";
 
     /**
      * Construct an exchange rate reader using the given base URL. All requests
@@ -57,8 +57,8 @@ public class ExchangeRateReader {
      * @throws IOException
      */
     public float getExchangeRate(String currencyCode, String year, String month, String day) throws IOException {
-        //URL url = new URL(baseURL + year + "-" + month + "-" + day + "?access_key=" + accessKey);
-        URL url = new URL(baseURL + year + "-" + month + "-" + day );
+        URL url = new URL(baseURL + year + "-" + month + "-" + day + "?access_key=" + accessKey);
+
         InputStream input = url.openStream();
         JsonReader reader = new JsonReader(new InputStreamReader(input));
 
@@ -85,7 +85,14 @@ public class ExchangeRateReader {
      * @throws IOException
      */
     public float getExchangeRate(String fromCurrency, String toCurrency, String year, String month, String day) throws IOException {
-        // TODO Your code here
-        throw new UnsupportedOperationException();
+        URL url = new URL(baseURL + year + "-" + month + "-" + day + "?access_key=" + accessKey);
+
+        InputStream input = url.openStream();
+        JsonReader reader = new JsonReader(new InputStreamReader(input));
+
+        JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
+
+        return jsonObject.getAsJsonObject("rates").get(fromCurrency).getAsFloat()/jsonObject.getAsJsonObject("rates").get(toCurrency).getAsFloat();
+
     }
 }
