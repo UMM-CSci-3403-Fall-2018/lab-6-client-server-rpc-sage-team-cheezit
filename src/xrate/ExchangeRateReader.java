@@ -31,13 +31,7 @@ public class ExchangeRateReader {
      *            the base URL for requests
      */
     public ExchangeRateReader(String baseURL) {
-        // TODO Your code here
-        /*
-         * DON'T DO MUCH HERE!
-         * People often try to do a lot here, but the action is actually in
-         * the two methods below. All you need to do here is store the
-         * provided `baseURL` in a field so it will be accessible later.
-         */
+        //sets up baseURL
         this.baseURL = baseURL;
     }
 
@@ -57,13 +51,17 @@ public class ExchangeRateReader {
      * @throws IOException
      */
     public float getExchangeRate(String currencyCode, String year, String month, String day) throws IOException {
+        //Sets url with date and accessKey, accessKey is ignored if not necessary
         URL url = new URL(baseURL + year + "-" + month + "-" + day + "?access_key=" + accessKey);
 
+        //Sets up input stream and input reader
         InputStream input = url.openStream();
         JsonReader reader = new JsonReader(new InputStreamReader(input));
 
+        //Creates jsonObject from reader
         JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
 
+        //Finds the rates object in the JSON data, goes to the specified currency code and returns the exchange rate
         return jsonObject.getAsJsonObject("rates").get(currencyCode).getAsFloat();
     }
 
@@ -85,13 +83,17 @@ public class ExchangeRateReader {
      * @throws IOException
      */
     public float getExchangeRate(String fromCurrency, String toCurrency, String year, String month, String day) throws IOException {
+        //Sets url with date and accessKey, accessKey is ignored if not necessary
         URL url = new URL(baseURL + year + "-" + month + "-" + day + "?access_key=" + accessKey);
 
+        //Sets up input stream and input reader
         InputStream input = url.openStream();
         JsonReader reader = new JsonReader(new InputStreamReader(input));
 
+        //Creates jsonObject from reader
         JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
 
+        //Finds the exchange rates for the two currency codes provided and divides them to find the exchange rate between the two currencies
         return jsonObject.getAsJsonObject("rates").get(fromCurrency).getAsFloat()/jsonObject.getAsJsonObject("rates").get(toCurrency).getAsFloat();
 
     }
