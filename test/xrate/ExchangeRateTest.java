@@ -18,28 +18,28 @@ public class ExchangeRateTest {
     public void checkUSD20091112() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
         float rate = xrReader.getExchangeRate("USD", "2009", "11", "12");
-        assertEquals(1.492200, rate, DELTA);
+        assertEquals(1.485674, rate, DELTA);
     }
 
     @Test
     public void checkGBP20100625() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
         float rate = xrReader.getExchangeRate("GBP", "2010", "06", "25");
-        assertEquals(0.823600, rate, DELTA);
+        assertEquals(0.823961, rate, DELTA);
     }
 
     @Test
     public void checkCHF20100705() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
         float rate = xrReader.getExchangeRate("CHF", "2010", "07", "05");
-        assertEquals(1.332500, rate, DELTA);
+        assertEquals(1.333588, rate, DELTA);
     }
 
     @Test
     public void checkZAR20100909() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
         float rate = xrReader.getExchangeRate("ZAR", "2010", "09", "09");
-        assertEquals(9.196400, rate, DELTA);
+        assertEquals(9.165675, rate, DELTA);
     }
     
     @Test
