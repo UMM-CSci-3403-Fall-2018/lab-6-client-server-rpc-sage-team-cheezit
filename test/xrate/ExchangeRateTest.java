@@ -11,41 +11,41 @@ import org.xml.sax.SAXException;
 import static org.junit.Assert.*;
 
 public class ExchangeRateTest {
-    private static final String NICS_DUMMY_DATA_URL = "http://www.morris.umn.edu/~mcphee/ExchangeRateData/";
+    private static final String NICS_DUMMY_DATA_URL = "http://facultypages.morris.umn.edu/~mcphee/ExchangeRateData/";
     private static final double DELTA = 0.0001;
 
     @Test
     public void checkUSD20091112() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
-        float rate = xrReader.getExchangeRate("USD", 2009, 11, 12);
+        float rate = xrReader.getExchangeRate("USD", "2009", "11", "12");
         assertEquals(1.492200, rate, DELTA);
     }
 
     @Test
     public void checkGBP20100625() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
-        float rate = xrReader.getExchangeRate("GBP", 2010, 6, 25);
+        float rate = xrReader.getExchangeRate("GBP", "2010", "06", "25");
         assertEquals(0.823600, rate, DELTA);
     }
 
     @Test
     public void checkCHF20100705() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
-        float rate = xrReader.getExchangeRate("CHF", 2010, 7, 5);
+        float rate = xrReader.getExchangeRate("CHF", "2010", "07", "05");
         assertEquals(1.332500, rate, DELTA);
     }
 
     @Test
     public void checkZAR20100909() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
-        float rate = xrReader.getExchangeRate("ZAR", 2010, 9, 9);
+        float rate = xrReader.getExchangeRate("ZAR", "2010", "09", "09");
         assertEquals(9.196400, rate, DELTA);
     }
     
     @Test
     public void checkUSDvsGBP20100625() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
-        float rate = xrReader.getExchangeRate("USD", "GBP", 2010, 6, 25);
+        float rate = xrReader.getExchangeRate("USD", "GBP", "2010", "6", "25");
         assertEquals(1.492714910151, rate, DELTA);
     }
 
@@ -53,8 +53,8 @@ public class ExchangeRateTest {
     @Test
     @Ignore
     public void checkUSDvsGBP20100625online() throws IOException, ParserConfigurationException, SAXException {
-        ExchangeRateReader xrReader = new ExchangeRateReader("http://data.fixer.io/api/2010-06-25?access_key=");
-        float rate = xrReader.getExchangeRate("USD", "GBP", 2010, 6, 25);
+        ExchangeRateReader xrReader = new ExchangeRateReader("http://data.fixer.io/api/");
+        float rate = xrReader.getExchangeRate("USD", "GBP", "2010", "6", "25");
         assertEquals(1.492714910151, rate, DELTA);
     }
 }
