@@ -51,7 +51,6 @@ public class ExchangeRateTest {
 
     // TO GET THIS TEST TO RUN YOU NEED TO ADD A VALID ACCESS KEY IN THE URL
     @Test
-
     public void checkUSDvsGBP20100625online() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader("http://data.fixer.io/api/");
         float rate = xrReader.getExchangeRate("USD", "GBP", "2010", "06", "25");
